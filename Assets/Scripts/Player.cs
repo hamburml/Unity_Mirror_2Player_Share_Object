@@ -57,9 +57,7 @@ public class Player : NetworkBehaviour
             }
             if (Input.GetMouseButton(1) && this.useableObject)
             {
-                //useableObject.CmdTriggerActive();
                 this.CmdTriggerActive();
-                //this.useableObject.CmdTriggerActive();
             }
         }
     }
@@ -73,16 +71,6 @@ public class Player : NetworkBehaviour
     {
         this.useableObject = null;
     }
-
-    /*private void OnTriggerStay(Collider other)
-    {
-        UseableObject useableObject = other.gameObject.GetComponent<UseableObject>();
-        if (Input.GetMouseButton(1) && isLocalPlayer)
-        {
-            //useableObject.CmdTriggerActive();
-            this.CmdTriggerActive(useableObject);
-        }
-    }*/
 
     [Command]
     public void CmdTriggerActive()
