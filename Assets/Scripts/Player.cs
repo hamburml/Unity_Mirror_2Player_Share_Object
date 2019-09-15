@@ -7,6 +7,8 @@ public class Player : NetworkBehaviour
     [SerializeField] private float rotationSpeed = 20f;
 
     private Camera playerCamera;
+
+    private UseableObject useableObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,15 +55,38 @@ public class Player : NetworkBehaviour
 
                 this.transform.eulerAngles = eulerAngles;
             }
+            if (Input.GetMouseButton(1) && this.useableObject)
+            {
+                //useableObject.CmdTriggerActive();
+                this.CmdTriggerActive();
+                //this.useableObject.CmdTriggerActive();
+            }
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        this.useableObject = other.gameObject.GetComponent<UseableObject>();
+    }
+
+    private void OnTriggerExit()
+    {
+        this.useableObject = null;
+    }
+
+    /*private void OnTriggerStay(Collider other)
     {
         UseableObject useableObject = other.gameObject.GetComponent<UseableObject>();
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && isLocalPlayer)
         {
-            useableObject.CmdTriggerActive();
+            //useableObject.CmdTriggerActive();
+            this.CmdTriggerActive(useableObject);
         }
+    }*/
+
+    [Command]
+    public void CmdTriggerActive()
+    {
+        useableObject.Active();
     }
 }

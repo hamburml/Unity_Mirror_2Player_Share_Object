@@ -17,8 +17,7 @@ public class Box : UseableObject
         
     }
 
-    [Command]
-    public override void CmdTriggerActive()
+    public override void Active()
     {
         this.transform.Rotate(new Vector3(0, 1, 0));
     }

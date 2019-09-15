@@ -5,6 +5,5 @@ using Mirror;
 
 public abstract class UseableObject : NetworkBehaviour
 {
-    [Command]
-    public abstract void CmdTriggerActive();
+    public abstract void Active();
 }
